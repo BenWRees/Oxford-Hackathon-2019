@@ -51,9 +51,6 @@ class GoogleRoutePlanner :
 		return routePlanner.addWaypoints(latitudes,startOfAddress)
 
 
-routePlanner = GoogleRoutePlanner()
-addresses = ["TN21 0TQ", "SO17 1AW", "RM11 2EH", "GL2 9DW", "TN21 0TQ"]
-print(routePlanner.createAddress(addresses))
 
 
 
