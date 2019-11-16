@@ -3,14 +3,14 @@
 from __future__ import print_function
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-import Graph.py
+import Graph
 
 
 #Luka modify this such that the indice matrix you're working on can appear here 
 def create_data_model(postcodeList):
     """Stores the data for the problem."""
     data = {}
-    distanceMatrix = Graph(postcodeList)
+    distanceMatrix = Graph.Graph(postcodeList)
     data['distance_matrix'] = distanceMatrix.getIncidence()
     data['numList'] = 1
     data['depot'] = 0
