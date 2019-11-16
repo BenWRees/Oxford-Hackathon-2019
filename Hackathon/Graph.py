@@ -8,7 +8,6 @@ Created on Sat Nov 16 12:54:10 2019
 '''
 import numpy as np
 import googlemaps
-from geopy.geocoders import Nominatim
 
 class Graph:
         
@@ -42,10 +41,3 @@ class Graph:
     
     def getDestList(self):
         return self.destinations
-    
-    #takes postcode as argument, returns coordinates
-    def convertPostCoord(self, postcode):
-        geolocator = Nominatim(user_agent="postcodeConverter")
-        location = geolocator.geocode(postcode)
-        return location.latitude, location.longitude 
-

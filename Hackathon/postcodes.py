@@ -1,6 +1,7 @@
 
 
 #jdata = getPlaces("bar", "51.7520220,-1.2577260", "100")
+from geopy.geocoders import Nominatim    
 
 class postcodes:  
 
@@ -18,5 +19,11 @@ class postcodes:
             for x in json_object['results']:
                 l.append({x['geometry']['location']['lat'],x['geometry']['location']['lng']})
         return l
+    
+    #takes postcode as argument, returns coordinates
+	def convertPostCoord(self, postcode):
+		geolocator = Nominatim(user_agent="postcodeConverter")
+        location = geolocator.geocode(postcode)
+        return location.latitude, location.longitude 
 
 # address(jdata)
