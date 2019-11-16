@@ -1,4 +1,4 @@
-from GetPlaces import getPlaces
+import GetPlaces
 
 #jdata = getPlaces("bar", "51.7520220,-1.2577260", "100")
 
