@@ -48,7 +48,7 @@ def print_solution(manager, routing, assignment) :
 def main():
     """Entry point of the program."""
     # Instantiate the data problem.
-    postcodeList = ['A','B','C','D','E','F','G','H','I','J','K','L','M']
+    postcodeList = ["TN21 0TQ","RG1 6PF","RM11 2EH","S017 1AW","SO16 4UF","SO18 2NU","SO17 3RE","HS7 5PG","GL5 1JY","L22 7RA","OX14 5JZ","RG19 8BT","TN32 5BP"]
     data = create_data_model(postcodeList)
 
     # Create the routing index manager.
