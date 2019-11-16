@@ -33,7 +33,7 @@ class GoogleRoutePlanner :
 		graph = Graph.Graph(postcodes)
 		print(postcodes, listofAddresses)
 		for currentPostcode in postcodes :
-			newLatLong = graph.convertPostCoord(postcodes)
+			newLatLong = graph.convertPostCoord(currentPostcode)
 			print(newLatLong)
 			listofAddresses.append(newLatLong)
 		return 0
