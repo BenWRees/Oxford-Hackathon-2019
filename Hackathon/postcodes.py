@@ -4,8 +4,11 @@
 
 class postcodes:  
 
+    def __init__(self):
+        super().__init__()
+    
     # a method which takes in a json object and searches through it to output the latitude and longitude of the location
-    def address(json_object):
+    def address(self, json_object):
         
         l = [] 
         
