@@ -5,24 +5,12 @@ import IndiceToPostcodeConverter
 import Graph
 '''
 	class that deals with taking the list of postcodes produced from 'RoutePostcodeConverter' and producing a google maps url link.
-	ALGORITHM:
-		takes the first element of the postcodes List and applies it as the start location of the directions 
 '''
 
-'''
-#NOTE - USEFUL FOR DIRECTIONS
-# Request directions via public transit
-now = datetime.now()
-directions_result = gmaps.directions("Sydney Town Hall",
-                                     "Parramatta, NSW",
-                                     mode="transit",
-                                     departure_time=now)
-'''
 class GoogleRoutePlanner :
-
 	def __init__(self) :
 		aKey = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
-		#self.graph = Graph.Graph()
+		#self.graph = Graph.Grapyu
 		#self.postcodes = postcodes.Postcodes()
 		gmaps = googlemaps.Client(key = aKey)
 
@@ -31,21 +19,43 @@ class GoogleRoutePlanner :
 		#for currentPostcode in postcodes :
 		listofAddresses = []
 		graph = Graph.Graph(postcodes)
-		print(postcodes, listofAddresses)
 		for currentPostcode in postcodes :
-			newLatLong = graph.convertPostCoord(postcodes)
-			print(newLatLong)
+			newLatLong = graph.convertPostCoord(currentPostcode)
 			listofAddresses.append(newLatLong)
-		return 0
+		return listofAddresses
+
+	#adds the origin and destination to the address
+	def addOriginDestination(self,latitudes,address):
+		latLong = latitudes[0]
+		latString = str(latLong[0])
+		longString = str(latLong[1])
+		address = address +latString + "," + longString + "&" + "destination=" +latString + "," + longString + "&" + "travelmode=walking&waypoints="
+		return address
+
+	#adds waypoints to the address
+	def addWaypoints(self,latitudes,address) :
+		#remove first and last elements (start and finish)
+		latitudes.pop()
+		del latitudes[0]
+
+		for currentLatitude in latitudes :
+			latString = str(currentLatitude[0])
+			longString = str(currentLatitude[1])
+			address = address + "|" + latString + "," + longString
+		return address
+
+	#function that will return the completed address with full route on Google 
+	def createAddress(self, postcodes) :
+		latitudes = routePlanner.postcodesAddressConverter(postcodes)
+		startOfAddress = routePlanner.addOriginDestination(latitudes, "https://www.google.com/maps/dir/?api=1&origin=")
+		return routePlanner.addWaypoints(latitudes,startOfAddress)
 
 
-	#function that constructs the address of the google maps and returns it
-	def googleMapsRouteURL(self,postcodes) :
-		latlLongs = postcodesAddressConverter(postcodes)
-		startingLatLong = atlLongs.pop()
-		return startingLatLong
-
-#Debug
 routePlanner = GoogleRoutePlanner()
-listofAddresses  = ["TN21 0TQ", "TN21 0TQ"]
-print(routePlanner.postcodesAddressConverter(listofAddresses))
+addresses = ["TN21 0TQ", "SO17 1AW", "RM11 2EH", "GL2 9DW", "TN21 0TQ"]
+print(routePlanner.createAddress(addresses))
+
+
+
+
+
