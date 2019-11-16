@@ -2,7 +2,10 @@ import urllib.request, json
 
 class GetPlaces:
 
-    def getPlaces(inquiryString, startLocation, radius): # pubs or what, latlng of user, radius, 
+    def __init__(self):
+        print ("init")
+
+    def getPlaces(self, inquiryString, startLocation, radius): # pubs or what, latlng of user, radius, 
         # fix inquiry string
         # inquiryString = str(inquiryString).replace(" ", "%20")#+ "&inputtype=textquery"
         inputPart = "type=" + inquiryString+ "&"
@@ -21,9 +24,8 @@ class GetPlaces:
         data = json.loads(response.read())
 
         # print (data['formatted_address'])
-
         return (data)
 
 
 
-# getPlaces("bar", "51.7520220,-1.2577260", "50")
+# print(GetPlaces.getPlaces("bar", "51.7520220,-1.2577260", "50"))
