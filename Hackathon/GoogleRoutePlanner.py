@@ -27,28 +27,25 @@ class GoogleRoutePlanner :
 		gmaps = googlemaps.Client(key = aKey)
 
 	#function that turns the list of postcodes gathered from RoutePostcodeConverter to a list of addresses
-	def PostcodesAddressesConverter(postcodes) :
+	def postcodesAddressConverter(self,postcodes) :
 		#for currentPostcode in postcodes :
 		listofAddresses = []
 		graph = Graph.Graph(postcodes)
+		print(postcodes, listofAddresses)
 		for currentPostcode in postcodes :
-			newLatLong = graph.convertPostCoord(currentPostcode)
+			newLatLong = graph.convertPostCoord(postcodes)
+			print(newLatLong)
 			listofAddresses.append(newLatLong)
-		return listofAddresses
+		return 0
 
 
 	#function that constructs the address of the google maps and returns it
-	def googleMapsRouteURL() :
-		#startingList = "http://maps.google.com/dir/?api=1"
-		listofAddresses = PostcodesAddressesConverter(postcodes)
-		startPoint = listofAddresses.pop()
-		destination = listofAddresses.
-		modeOfTravel = "travelmodewalking"
-		#return graph.convertPostCoord(startingDestination)
+	def googleMapsRouteURL(self,postcodes) :
+		latlLongs = postcodesAddressConverter(postcodes)
+		startingLatLong = atlLongs.pop()
+		return startingLatLong
 
-		#might not need list of routes 
-		#gmaps.directions(startingDestination, "walking", listofAddresses, units="metric", transit_routing_preference="less_walking")
-
-googleRoute = GoogleRoutePlanner()
-listofAddresses = ['TN21 0TQ','TN21 9NS','TN21 7YQ', 'TN21 5TY']
-googleRoute.googleMapsRouteURL(listofAddresses)
+#Debug
+routePlanner = GoogleRoutePlanner()
+listofAddresses  = ["TN21 0TQ", "TN21 0TQ"]
+print(routePlanner.postcodesAddressConverter(listofAddresses))
