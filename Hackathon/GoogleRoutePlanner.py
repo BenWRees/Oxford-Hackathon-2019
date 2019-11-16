@@ -20,7 +20,7 @@ class GoogleRoutePlanner :
 		listofAddresses = []
 		graph = Graph.Graph(postcodes)
 		for currentPostcode in postcodes :
-			newLatLong = graph.convertPostCoord(currentPostcode)
+			newLatLong = graph.convertPostToCoord(currentPostcode)
 			listofAddresses.append(newLatLong)
 		return listofAddresses
 
