@@ -1,31 +1,19 @@
-import re
+from GetPlaces import getPlaces
 
-jdata= {
-   "candidates" : [
-      {
-         "formatted_address" : "Lambeth, London SE1 7PB, United Kingdom"
-      }
-   ],
-   "status" : "OK"
-}
+#jdata = getPlaces("bar", "51.7520220,-1.2577260", "100")
 
-def address(json_object, name):
-    l = [] 
+class postcodes:  
+
+    # a method which takes in a json object and searches through it to output the latitude and longitude of the location
+    def address(json_object):
         
-    for x in json_object['candidates']:
-        l.append(x['formatted_address'])
+        l = [] 
         
-    return l
+        if json_object == None:
+            return None
+        else:
+            for x in json_object['results']:
+                l.append({x['geometry']['location']['lat'],x['geometry']['location']['lng']})
+        return l
 
-def postcode(l):
-    
-    postcodes = []
-    
-    for s in l:
-        postcodes.append(re.findall(r'[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z]{2}', s))
-    
-    return postcodes
-
-print(postcode(address(jdata,"formatted_address")))
-
-
+# address(jdata)
