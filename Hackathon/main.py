@@ -1,5 +1,16 @@
 import sys
-import GetPlaces, GoogleRoutePlanner, Graph, IndiceToPostcodeConverter, postcodes, TravellingSalesman, UserData
+import GetPlaces
+import GoogleRoutePlanner
+import IndiceToPostcodeConverter
+import Graph
+import postcodes
+import TravellingSalesman
+import UserData
+import json
 
-if __name__ == "__main__":
-    getPlaces(sys.argv[0], sys.argv[1], sys.argv[2])
+
+def main():
+    jsondat = getPlaces(sys.argv[0], sys.argv[1], sys.argv[2])
+
+if __name__ == "__main__":    
+    main()
