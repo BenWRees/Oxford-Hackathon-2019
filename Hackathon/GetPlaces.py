@@ -22,7 +22,7 @@ class GetPlaces:
         response = urllib.request.urlopen(url)
 
         data = json.loads(response.read())
-        # print (data)
+        print (data)
         # print (data['formatted_address'])
         return (data)
 
