@@ -5,7 +5,6 @@ import IndiceToPostcodeConverter
 import Graph
 import postcodes
 import TravellingSalesman
-import UserData
 import json
 
 
