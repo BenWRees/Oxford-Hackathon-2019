@@ -15,10 +15,10 @@ class GoogleRoutePlanner :
 		gmaps = googlemaps.Client(key = aKey)
 
 	#function that turns the list of postcodes gathered from RoutePostcodeConverter to a list of addresses
-	def postcodesAddressConverter(self,postcodes) :
+	def postcodesAddressConverter(self.postcodes,namesList) :
 		#for currentPostcode in postcodes :
 		listofAddresses = []
-		graph = Graph.Graph(postcodes)
+		graph = Graph.Graph(postcodes,namesList)
 		for currentPostcode in postcodes :
 			newLatLong = graph.convertPostToCoord(currentPostcode)
 			listofAddresses.append(newLatLong)
@@ -44,11 +44,19 @@ class GoogleRoutePlanner :
 			address = address + "|" + latString + "," + longString
 		return address
 
-	#function that will return the completed address with full route on Google 
+	#function that will return the completed address with full route on Google
+	""" 
 	def createAddress(self, postcodes) :
-		latitudes = routePlanner.postcodesAddressConverter(postcodes)
-		startOfAddress = routePlanner.addOriginDestination(latitudes, "https://www.google.com/maps/dir/?api=1&origin=")
-		return routePlanner.addWaypoints(latitudes,startOfAddress)
+		latitudes = postcodesAddressConverter(postcodes)
+		startOfAddress = addOriginDestination(latitudes, "https://www.google.com/maps/dir/?api=1&origin=")
+		return addWaypoints(latitudes,startOfAddress)
+	"""
+
+googleRoute = GoogleRoutePlanner() 
+postcodes = ["TN21 0TQ","RG1 6PF","RM11 2EH","S017 1AW","SO16 4UF","SO18 2NU","SO17 3RE","HS7 5PG","GL5 1JY","L22 7RA","OX14 5JZ","RG19 8BT","TN32 5BP"]
+latitudes = googleRoute.postcodesAddressConverter(postcodes)
+startOfAddress = googleRoute.addOriginDestination(latitudes, "https://www.google.com/maps/dir/?api=1&origin=")
+print(googleRoute.ddWaypoints(latitudes,startOfAddress))
 
 
 
