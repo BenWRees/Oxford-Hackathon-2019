@@ -20,18 +20,18 @@ class Graph:
 
         self.setDestList(postcodeList, nameList)
 
-        self.setDistanceDict(self.getDestList, self.key)
+        self.setDistanceDict(self.getDestList())
 
-        self.setIncidence(self.getDistanceDict, self.getNameDict)
+        self.setIncidence(self.getDistanceDict(), self.nameList)
 
-    def setIncidence(self, distanceDict, nameDict):
+    def setIncidence(self, distanceDict, nameList):
         n = len(self.distanceDict['rows'])
         self.incidence = np.eye(n)
 
         self.nameDict = dict()
 
         for x in range(0, n):
-            elem = self.distanceDict['rows'][x]
+            elem = self.getDistanceDict()['rows'][x]
             for y in range(0, len(elem['elements'])):
                 self.incidence[x][y] = elem['elements'][y]['distance']['value']
                 if x == y and elem['elements'][y]['distance']['value'] == 0:
@@ -43,16 +43,20 @@ class Graph:
     def setDestList(self, postcodeList, nameList):
 
         if len(postcodeList[0]) > 1:
-            for x in range(0, len(postcodeList)):
-                postcodeList[x] = postcodes.postcodes.convertCoordToPost(coord = postcodeList[x])
 
-        dest = postcodeList[0].split(' ')
-        destList = dest[0]+'+'+dest[1]
+            destList = str(list(postcodeList[0])[0])+', '+str(list(postcodeList[0])[1])
 
-        for x in range(1, len(postcodeList)):
-            dest = postcodeList[x].split(' ')
-            destPostcode = dest[0]+'+'+dest[1]
-            destList = destList+'|'+destPostcode
+            for x in range(1, len(postcodeList)):
+                destList = destList+'|'+str(list(postcodeList[x])[0])+', '+str(list(postcodeList[x])[1])
+        else:
+
+            dest = postcodeList[0].split(' ')
+            destList = dest[0]+'+'+dest[1]
+
+            for x in range(1, len(postcodeList)):
+                dest = postcodeList[x].split(   ' ')
+                destPostcode = dest[0]+'+'+dest[1]
+                destList = destList+'|'+destPostcode
 
         self.destinations = destList
 
