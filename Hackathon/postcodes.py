@@ -2,6 +2,7 @@
 
 #jdata = getPlaces("bar", "51.7520220,-1.2577260", "100")
 from geopy.geocoders import Nominatim
+import re
 
 class postcodes:
 

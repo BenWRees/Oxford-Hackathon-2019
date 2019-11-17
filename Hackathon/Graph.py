@@ -59,12 +59,12 @@ class Graph:
         function that takes a list of malformed 'postcodes', that are really a list of lat-longs
         and turns them into a list of postcodes
     """
-    def populateActualPostcodeList(non_actual_postcodes) :
-        postcodes = postcodes.postcodes()
+    def populateActualPostcodeList(self, non_actual_postcodes) :
+        postObj = postcodes.postcodes()
         actual_Postcodes = list()
         for x in non_actual_postcodes :
-            new_Real_Postcode = postcodes.convertCoordToPost(x)
-            actual_Postcodes.append(new_Real_Postcode)
+            new_Real_Postcode = postObj.convertCoordToPost(x)
+            actual_Postcodes.append(new_Real_Postcode.replace("-",""))
 
         return actual_Postcodes 
 
