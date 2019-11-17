@@ -16,8 +16,8 @@ class Graph:
     def __init__(self, postcodeList, nameList):
 
         if len(nameList) > 10:
-            postcodeList = postcodeList[:10]
-            nameList = nameList[:10]
+            postcodeList = postcodeList[:12]
+            nameList = nameList[:12]
 
         self.key = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
         self.nameList = nameList
