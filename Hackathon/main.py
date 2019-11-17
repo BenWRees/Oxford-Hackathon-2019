@@ -33,7 +33,7 @@ def main():
     for x in directedIndices.replace(" ", "").split(","):
         # print(x)
         # print (nameDict[int(x)])
-        pubsInOrder.append((nameDict[int(x)]).replace("{", "").replace("}",""))
+        pubsInOrder.append(nameDict[int(x)])
 
     print(pubsInOrder)
     
