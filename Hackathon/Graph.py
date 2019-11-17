@@ -21,6 +21,9 @@ class Graph:
 
         self.key = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
         self.nameList = nameList
+        self.postcodeList = postcodeList
+
+        print(postcodeList)
 
         self.setDestList(postcodeList, nameList)
         self.setDistanceDict(self.getDestList())
@@ -37,8 +40,8 @@ class Graph:
             for y in range(0, len(elem['elements'])):
                 self.incidence[x][y] = elem['elements'][y]['distance']['value']
                 if x == y and elem['elements'][y]['distance']['value'] == 0:
-                    self.nameDict[x] = nameList[x]
-
+                    self.nameDict[x] = nameList[x] + ',' + str(self.postcodeList[x])
+                    
     def getIncidence(self):
         return self.incidence
 
