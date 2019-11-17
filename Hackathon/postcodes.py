@@ -12,13 +12,15 @@ class postcodes:
     def address(self, json_object):
 
         l = []
+        n = []
 
         if json_object == None:
             return None
         else:
             for x in json_object['results']:
                 l.append({x['geometry']['location']['lat'],x['geometry']['location']['lng']})
-        return l
+                n.append({x['geometry']['name']})
+        return l, n
 
     #takes postcode as argument, returns coordinates
     def convertPostToCoord(self, postcode):
@@ -31,4 +33,6 @@ class postcodes:
         location = geolocator.reverse(coord[0], coord[1])
         return location
 
+# coords = [51.7521952, -1.2582522]
+# print(postcodes.convertCoordToPost(coords))
 # address(jdata)
