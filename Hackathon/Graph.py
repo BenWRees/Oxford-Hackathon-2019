@@ -14,11 +14,37 @@ class Graph:
 
     #for a given list of postcodes, creates the incidence matrix for the distances between them
     def __init__(self, postcodeList, nameList):
-        aKey = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
+        self.key = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
+
+        self.nameList = nameList
+
+        self.setDestList(postcodeList, nameList)
+
+        self.setDistanceDict(self.getDestList, self.key)
+
+        self.setIncidence(self.getDistanceDict, self.getNameDict)
+
+    def setIncidence(self, distanceDict, nameDict):
+        n = len(self.distanceDict['rows'])
+        self.incidence = np.eye(n)
+
+        self.nameDict = dict()
+
+        for x in range(0, n):
+            elem = self.distanceDict['rows'][x]
+            for y in range(0, len(elem['elements'])):
+                self.incidence[x][y] = elem['elements'][y]['distance']['value']
+                if x == y and elem['elements'][y]['distance']['value'] == 0:
+                    self.nameDict[nameList[x]] = x
+
+    def getIncidence(self):
+        return self.incidence
+
+    def setDestList(self, postcodeList, nameList):
 
         if len(postcodeList[0]) > 1:
             for x in range(0, len(postcodeList)):
-                postcodeList[x] = postcodes.convertCoordToPost(postcodeList[x])
+                postcodeList[x] = postcodes.postcodes.convertCoordToPost(postcodeList[x])
 
         dest = postcodeList[0].split(' ')
         destList = dest[0]+'+'+dest[1]
@@ -30,26 +56,15 @@ class Graph:
 
         self.destinations = destList
 
-        gmaps = googlemaps.Client(key = aKey)
-        self.distanceDict = gmaps.distance_matrix(origins = destList , destinations = destList, mode = 'walking')
-
-        n = len(self.distanceDict['rows'])
-        self.incidence = np.eye(n)
-
-        self.nameDict = dict()
-
-        for x in range(0, n):
-            elem = self.distanceDict['rows'][x]
-            for y in range(0, len(elem['elements'])):
-                self.incidence[x][y] = elem['elements'][y]['distance']['value']
-                if x == y and elem['elements'][y]['distance']['value'] == 0:
-                    self.nameDict[nameList[x]] = x 
-
-    def getIncidence(self):
-        return self.incidence
-
     def getDestList(self):
         return self.destinations
+
+    def setDistanceDict(self, destList):
+        gmaps = googlemaps.Client(key = self.key)
+        self.distanceDict = gmaps.distance_matrix(origins = destList , destinations = destList, mode = 'walking')
+
+    def getDistanceDict(self):
+        return self.distanceDict
 
     def getNameDict(self):
         return self.nameDict
