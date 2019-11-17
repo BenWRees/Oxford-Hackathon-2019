@@ -15,11 +15,12 @@ def create_data_model(graph_object):
     data['depot'] = 0
     return data
 
-"""
+
 def print_solution(manager, routing, assignment):
-    print('Objective: {} miles'.format(assignment.ObjectiveValue()))
+    # print('Objective: {} miles'.format(assignment.ObjectiveValue()))
     index = routing.Start(0)
-    plan_output = 'Route for vehicle 0:\n'
+    plan_output = ""
+    # plan_output = 'Route for vehicle 0:\n'
     route_distance = 0
     while not routing.IsEnd(index):
         plan_output += ' {} ,'.format(manager.IndexToNode(index))
@@ -27,10 +28,11 @@ def print_solution(manager, routing, assignment):
         index = assignment.Value(routing.NextVar(index))
         route_distance += routing.GetArcCostForVehicle(previous_index, index, 0)
     plan_output += ' {}\n'.format(manager.IndexToNode(index))
-    print(plan_output)
-    plan_output += 'Route distance: {}miles\n'.format(route_distance)
-"""
+    # print(plan_output)
+    return plan_output
+    # plan_output += 'Route distance: {}miles\n'.format(route_distance)
 
+"""
 #function that should return a list of the route and a its distance
 def print_solution(manager, routing, assignment) :
     index = routing.Start(0)
@@ -42,7 +44,7 @@ def print_solution(manager, routing, assignment) :
         index = assignment.Value(routing.NextVar(index))
         route_distance += routing.GetArcCostForVehicle(previous_index, index, 0)
         return route, route_distance 
-
+"""
 #AFTER TESTING - CHANGE FUNCTION MAIN TO 'travellingSalesmanAlgorithm(postcodesList)' where postcodesList is a list of postcodes  
 def travellingSalesmanAlgorithm(graph_object):
     """Entry point of the program."""
@@ -80,4 +82,4 @@ def travellingSalesmanAlgorithm(graph_object):
 
     # Print solution on console.
     if assignment:
-        return print_solution(manager, routing, assignment)[0]
+        return print_solution(manager, routing, assignment)
