@@ -31,17 +31,45 @@ class Graph:
 
     def setIncidence(self, distanceDict, nameList):
         n = len(self.distanceDict['rows'])
+        actual_Postcodes = self.populateActualPostcodeList(self.postcodeList)
+
+        
+        #this is the incidence array being set 
         self.incidence = np.eye(n)
+
 
         self.nameDict = dict()
 
-        for x in range(0, n):
+        #loops through the row index's 
+        for x in range(n):
             elem = self.getDistanceDict()['rows'][x]
-            for y in range(0, len(elem['elements'])):
+
+            #loops through the elemetns on row x
+            for y in range(len(elem['elements'])):
+
                 self.incidence[x][y] = elem['elements'][y]['distance']['value']
-                if x == y and elem['elements'][y]['distance']['value'] == 0:
-                    self.nameDict[x] = nameList[x]# + ',' + str(self.postcodeList[x])
+
+                #if element (a)xy is on the diagonal and the diagonal elements value is 0
+                #if x == y and elem['elements'][y]['distance']['value'] == 0 :
                     
+                    #assign value on row x as the pair (name of indice, postcode of indice)
+            self.nameDict[x] = zip(nameList[x],actual_Postcodes[x])
+
+    """
+        function that takes a list of malformed 'postcodes', that are really a list of lat-longs
+        and turns them into a list of postcodes
+    """
+    def populateActualPostcodeList(non_actual_postcodes) :
+        postcodes = postcodes.postcodes()
+        actual_Postcodes = list()
+        for x in non_actual_postcodes :
+            new_Real_Postcode = postcodes.convertCoordToPost(x)
+            actual_Postcodes.append(new_Real_Postcode)
+
+        return actual_Postcodes 
+
+
+
     def getIncidence(self):
         return self.incidence
 
