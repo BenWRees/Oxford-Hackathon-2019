@@ -20,7 +20,7 @@ def main():
     latlong = {float(latlong.split(',')[0]),float(latlong.split(',')[1])}
     postCodeList = [latlong] + postCodeList
     nameList = ["home"]+ nameList
-    print (postCodeList)
+    # print (postCodeList)
     # print (post.convertCoordToPost([51.7521952, -1.2582522]))
 
     graphUser = Graph.Graph(postCodeList, nameList)
@@ -28,8 +28,7 @@ def main():
     nameDict = graphUser.getNameDict()
 
     print(incidenceGraph)
-    ts = TravellingSalesman.TravellingSalesman()
-    hopefullySomething  = ts.travellingSalesmanAlgorythm(graphUser)
+    hopefullySomething  = TravellingSalesman.travellingSalesmanAlgorithm(graphUser)
     print(hopefullySomething)
     
     # grp = GoogleRoutePlanner.GoogleRoutePlanner()
