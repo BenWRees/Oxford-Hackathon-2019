@@ -14,6 +14,11 @@ class Graph:
 
     #for a given list of postcodes, creates the incidence matrix for the distances between them
     def __init__(self, postcodeList, nameList):
+
+        if len(nameList) > 25:
+            postcodeList = postcodeList[:25]
+            nameList = nameList[:25]
+
         self.key = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
         self.nameList = nameList
 
