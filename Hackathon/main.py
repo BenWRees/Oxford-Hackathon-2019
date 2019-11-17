@@ -1,6 +1,6 @@
 import sys
 import GetPlaces
-# import GoogleRoutePlanner
+import GoogleRoutePlanner
 import IndiceToPostcodeConverter
 import Graph
 import postcodes
@@ -14,6 +14,7 @@ def main():
     print(latlong)
     latlongString = str(latlong[0])+","+str(latlong[1])
     jsondat = gp.getPlaces("bar", latlongString, sys.argv[2])
+    # jsondat = gp.getPlaces("bar", latlongString, "")
     # jsondat = gp.getPlaces("bar", "51.7520220,-1.2577260", "50")
     # print (sys.argv[1])
     # print (jsondat)
@@ -42,7 +43,9 @@ def main():
     pubsInOrder[0]= latlong
     pubsInOrder[-1]=latlong
     print(pubsInOrder)
-
+    googleRoute = GoogleRoutePlanner.GoogleRoutePlanner()
+    address = (googleRoute.addOriginDestination(pubsInOrder, "https://www.google.com/maps/dir/?api=1&origin="))
+    print(googleRoute.addWaypoints(pubsInOrder, address))
     
     # grp.createAddress()
 
