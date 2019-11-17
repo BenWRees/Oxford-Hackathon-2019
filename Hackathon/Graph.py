@@ -55,8 +55,10 @@ class Graph:
             destList = postcodeList[0].replace(' ','')
 
             for x in range(1, len(postcodeList)):
-                dest = postcodeList[x].split(   ' ')
-                destPostcode = dest[0]+'+'+dest[1]
+                #dest = postcodeList[x].split(' ')
+                #destPostcode = dest[0]+'+'+dest[1]
+
+                destPostcode = postcodeList[x].replace(' ','')
                 destList = destList+'|'+destPostcode
 
         self.destinations = destList
