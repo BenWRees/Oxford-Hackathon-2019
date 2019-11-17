@@ -44,7 +44,7 @@ class Graph:
 
         if len(postcodeList[0]) > 1:
             for x in range(0, len(postcodeList)):
-                postcodeList[x] = postcodes.postcodes.convertCoordToPost(postcodeList[x])
+                postcodeList[x] = postcodes.postcodes.convertCoordToPost(coord = postcodeList[x])
 
         dest = postcodeList[0].split(' ')
         destList = dest[0]+'+'+dest[1]
