@@ -12,5 +12,5 @@ class UserData :
 	def getDistance(self) :
 		return distance
 
-	def getKeyword(self)
+	def getKeyword(self) :
 		return keyword
