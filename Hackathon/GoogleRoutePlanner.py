@@ -45,11 +45,6 @@ class GoogleRoutePlanner :
 		return addWaypoints(latitudes,startOfAddress)
 	"""
 
-googleRoute = GoogleRoutePlanner() 
-postcodes = [(50.5,-1.7),{"The Bear Inn"},{"The Crown Inn"},{"The Mitre"},{"Clowns Wine Bar"},{"The Hobbit Inn"},{"Wild Lime"},{"The Shooting Star"},{"home"}]
-#latitudes = googleRoute.postcodesAddressConverter(postcodes)
-startOfAddress = googleRoute.addOriginDestination(postcodes, "https://www.google.com/maps/dir/?api=1&origin=")
-print(googleRoute.addWaypoints(postcodes,startOfAddress))
 
 
 
