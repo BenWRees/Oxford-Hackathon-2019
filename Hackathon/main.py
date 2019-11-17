@@ -27,8 +27,15 @@ def main():
     nameDict = graphUser.getNameDict()
 
     print(incidenceGraph)
-    hopefullySomething  = TravellingSalesman.travellingSalesmanAlgorithm(graphUser)
-    print(hopefullySomething)
+    directedIndices  = TravellingSalesman.travellingSalesmanAlgorithm(graphUser)
+    print(directedIndices)
+    pubsInOrder = []
+    for x in directedIndices.replace(" ", "").split(","):
+        # print(x)
+        # print (nameDict[int(x)])
+        pubsInOrder.append((nameDict[int(x)]).replace("{", "").replace("}",""))
+
+    print(pubsInOrder)
     
     # grp = GoogleRoutePlanner.GoogleRoutePlanner()
     # grp.createAddress()
