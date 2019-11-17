@@ -49,8 +49,10 @@ class Graph:
 
         else:
 
-            dest = postcodeList[0].split(' ')
-            destList = dest[0]+'+'+dest[1]
+            #dest = postcodeList[0].split(' ')
+            #destList = dest[0]+'+'+dest[1]
+
+            destList = postcodeList[0].replace(' ','')
 
             for x in range(1, len(postcodeList)):
                 dest = postcodeList[x].split(   ' ')
