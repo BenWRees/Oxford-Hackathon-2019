@@ -37,7 +37,7 @@ class Graph:
             for y in range(0, len(elem['elements'])):
                 self.incidence[x][y] = elem['elements'][y]['distance']['value']
                 if x == y and elem['elements'][y]['distance']['value'] == 0:
-                    self.nameDict[nameList[x]] = x
+                    self.nameDict[x] = nameList[x]
 
     def getIncidence(self):
         return self.incidence
