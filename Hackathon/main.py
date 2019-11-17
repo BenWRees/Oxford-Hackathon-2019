@@ -17,9 +17,10 @@ def main():
     # print (jsondat)
 
     postCodeList, nameList = post.address(jsondat)
+    latlong = {float(latlong.split(',')[0]),float(latlong.split(',')[1])}
     postCodeList = [latlong] + postCodeList
     nameList = ["home"]+ nameList
-    # print (postCodeList)
+    print (postCodeList)
     # print (post.convertCoordToPost([51.7521952, -1.2582522]))
 
     graphUser = Graph.Graph(postCodeList, nameList)
