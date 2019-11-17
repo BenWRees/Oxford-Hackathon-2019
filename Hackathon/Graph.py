@@ -15,13 +15,10 @@ class Graph:
     #for a given list of postcodes, creates the incidence matrix for the distances between them
     def __init__(self, postcodeList, nameList):
         self.key = 'AIzaSyDXKLWHJQdqzVI1agSREbzr4AuoBKyUeuE'
-
         self.nameList = nameList
 
         self.setDestList(postcodeList, nameList)
-
         self.setDistanceDict(self.getDestList())
-
         self.setIncidence(self.getDistanceDict(), self.nameList)
 
     def setIncidence(self, distanceDict, nameList):
@@ -42,12 +39,14 @@ class Graph:
 
     def setDestList(self, postcodeList, nameList):
 
-        if len(postcodeList[0]) > 1:
+        #determines if postcode or coordinates
+        if type(postcodeList[0]) == type(set()):
 
             destList = str(list(postcodeList[0])[0])+', '+str(list(postcodeList[0])[1])
 
             for x in range(1, len(postcodeList)):
                 destList = destList+'|'+str(list(postcodeList[x])[0])+', '+str(list(postcodeList[x])[1])
+
         else:
 
             dest = postcodeList[0].split(' ')
