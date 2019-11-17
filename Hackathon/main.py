@@ -42,7 +42,7 @@ def main():
 
     pubsInOrder[0]= latlong
     pubsInOrder[-1]=latlong
-    print(pubsInOrder)
+    # print(pubsInOrder)
     googleRoute = GoogleRoutePlanner.GoogleRoutePlanner()
     address = (googleRoute.addOriginDestination(pubsInOrder, "https://www.google.com/maps/dir/?api=1&origin="))
     print(googleRoute.addWaypoints(pubsInOrder, address))

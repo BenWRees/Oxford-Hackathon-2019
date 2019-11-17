@@ -33,7 +33,7 @@ class postcodes:
         geolocator = Nominatim(user_agent="coordConverter")
         coord = list(coord)
         location = geolocator.reverse(coord[0], coord[1])
-        print(location)
+        # print(location)
         location = re.search(r'[A-PR-UWYZa-pr-uwyz0-9][A-HK-Ya-hk-y0-9][AEHMNPRTVXYaehmnortvxy0-9]?[ABEHMNPRVWXYabehmnprvwxy0-9]? {1,2}[0-9][ABD-HJLN-UW-Zabd-h-jln-uw]{2}|GIR 0AA', location[0]).group()
         return location
 
