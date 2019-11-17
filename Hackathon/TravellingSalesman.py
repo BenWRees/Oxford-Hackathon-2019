@@ -6,12 +6,11 @@ from ortools.constraint_solver import pywrapcp
 import Graph
 
 
-#Luka modify this such that the indice matrix you're working on can appear here 
-def create_data_model(distance_matrix):
+def create_data_model(graph_object):
     """Stores the data for the problem."""
     data = {}
     # distanceMatrix = Graph.Graph(postcodeList)
-    data['distance_matrix'] = distance_matrix.getIncidence()
+    data['distance_matrix'] = graph_object.getIncidence()
     data['numList'] = 1
     data['depot'] = 0
     return data
@@ -45,11 +44,11 @@ def print_solution(manager, routing, assignment) :
         return route, route_distance 
 
 #AFTER TESTING - CHANGE FUNCTION MAIN TO 'travellingSalesmanAlgorithm(postcodesList)' where postcodesList is a list of postcodes  
-def travellingSalesmanAlgorithm(distance_matrix):
+def travellingSalesmanAlgorithm(graph_object):
     """Entry point of the program."""
     # Instantiate the data problem.
     # postcodeList = ["TN21 0TQ","RG1 6PF","RM11 2EH","S017 1AW","SO16 4UF","SO18 2NU","SO17 3RE","HS7 5PG","GL5 1JY","L22 7RA","OX14 5JZ","RG19 8BT","TN32 5BP"]
-    data = create_data_model(distance_matrix)
+    data = create_data_model(graph_object)
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']),
@@ -81,8 +80,4 @@ def travellingSalesmanAlgorithm(distance_matrix):
 
     # Print solution on console.
     if assignment:
-        print_solution(manager, routing, assignment)[0]
-
-
-if __name__ == '__main__':
-    main()
+        return print_solution(manager, routing, assignment)[0]
