@@ -7,11 +7,11 @@ import Graph
 
 
 #Luka modify this such that the indice matrix you're working on can appear here 
-def create_data_model(postcodeList):
+def create_data_model(distance_matrix):
     """Stores the data for the problem."""
     data = {}
-    distanceMatrix = Graph.Graph(postcodeList)
-    data['distance_matrix'] = distanceMatrix.getIncidence()
+    # distanceMatrix = Graph.Graph(postcodeList)
+    data['distance_matrix'] = distance_matrix.getIncidence()
     data['numList'] = 1
     data['depot'] = 0
     return data
@@ -45,11 +45,11 @@ def print_solution(manager, routing, assignment) :
         return route, route_distance 
 
 #AFTER TESTING - CHANGE FUNCTION MAIN TO 'travellingSalesmanAlgorithm(postcodesList)' where postcodesList is a list of postcodes  
-def main():
+def travellingSalesmanAlgorithm(distance_matrix):
     """Entry point of the program."""
     # Instantiate the data problem.
-    postcodeList = ["TN21 0TQ","RG1 6PF","RM11 2EH","S017 1AW","SO16 4UF","SO18 2NU","SO17 3RE","HS7 5PG","GL5 1JY","L22 7RA","OX14 5JZ","RG19 8BT","TN32 5BP"]
-    data = create_data_model(postcodeList)
+    # postcodeList = ["TN21 0TQ","RG1 6PF","RM11 2EH","S017 1AW","SO16 4UF","SO18 2NU","SO17 3RE","HS7 5PG","GL5 1JY","L22 7RA","OX14 5JZ","RG19 8BT","TN32 5BP"]
+    data = create_data_model(distance_matrix)
 
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']),

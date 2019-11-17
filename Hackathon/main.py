@@ -10,14 +10,16 @@ import json
 
 
 def main():
-    
-    jsondat = gp.getPlaces("bar", sys.argv[1], sys.argv[2])
+    latlong = sys.argv[1]
+    jsondat = gp.getPlaces("bar", latlong, sys.argv[2])
     # jsondat = gp.getPlaces("bar", "51.7520220,-1.2577260", "50")
     # print (sys.argv[1])
-    print (jsondat)
+    # print (jsondat)
 
     postCodeList, nameList = post.address(jsondat)
-    print (postCodeList)
+    postCodeList = [latlong] + postCodeList
+    nameList = ["home"]+ nameList
+    # print (postCodeList)
     # print (post.convertCoordToPost([51.7521952, -1.2582522]))
 
     graphUser = Graph.Graph(postCodeList, nameList)
@@ -26,6 +28,8 @@ def main():
 
     print(incidenceGraph)
     ts = TravellingSalesman.TravellingSalesman()
+    hopefullySomething  = ts.travellingSalesmanAlgorythm(graphUser)
+    print(hopefullySomething)
     
     # grp = GoogleRoutePlanner.GoogleRoutePlanner()
     # grp.createAddress()

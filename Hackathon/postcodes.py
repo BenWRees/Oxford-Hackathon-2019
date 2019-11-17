@@ -19,7 +19,7 @@ class postcodes:
         else:
             for x in json_object['results']:
                 l.append({x['geometry']['location']['lat'],x['geometry']['location']['lng']})
-                n.append({x['geometry']['name']})
+                n.append({x['name']})
         return l, n
 
     #takes postcode as argument, returns coordinates
